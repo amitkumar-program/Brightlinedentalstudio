@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
+import heroVideo from '@/assets/video/Video-Hero-Background.mp4';
 
 export function Hero() {
   const textVariants: Variants = {
@@ -30,6 +31,7 @@ export function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-105 transition-opacity duration-1000"
         >
+          <source src={heroVideo} type="video/mp4" />
           <source src={`${import.meta.env.BASE_URL}Video-Hero-Background.mp4`} type="video/mp4" />
           <source src="Video-Hero-Background.mp4" type="video/mp4" />
           Your browser does not support video playback.

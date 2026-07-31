@@ -1,6 +1,8 @@
 
 import { motion } from 'framer-motion';
 import { MapPin, Clock } from 'lucide-react';
+import dentalClinicInteriorImg from '@/assets/images/dental_clinic_interior.jpg';
+import smileLabTechImg from '@/assets/images/smile_lab_technology.jpg';
 
 export function About() {
   return (
@@ -69,7 +71,7 @@ export function About() {
             <div className="space-y-6">
               <div className="overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg aspect-[4/3] relative bg-slate-100">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/dental_clinic_interior.jpg`}
+                  src={dentalClinicInteriorImg}
                   alt="Brightline Dental Studio Modern Clinic Suite"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -77,7 +79,7 @@ export function About() {
               </div>
               <div className="overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg aspect-[16/9] relative bg-slate-100">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/smile_lab_technology.jpg`}
+                  src={smileLabTechImg}
                   alt="Brightline Dental Studio State-of-the-Art Smile Lab"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

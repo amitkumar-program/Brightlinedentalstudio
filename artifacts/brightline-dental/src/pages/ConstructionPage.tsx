@@ -18,6 +18,7 @@ import {
 
 import { PageLayout } from '../components/PageLayout';
 import { PageHero } from '../components/PageHero';
+import smileLabTechImg from '@/assets/images/smile_lab_technology.jpg';
 
 interface Station {
   id: string;
@@ -209,7 +210,7 @@ export default function ConstructionPage() {
                 {/* Interactive Tooth Construction Diagram with Real Smile Lab Technology Image */}
                 <div className="aspect-[16/10] relative overflow-hidden bg-slate-900">
                   <img
-                    src={`${import.meta.env.BASE_URL}images/smile_lab_technology.jpg`}
+                    src={smileLabTechImg}
                     alt="Brightline Dental Studio Smile Lab Technology"
                     className="w-full h-full object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                     referrerPolicy="no-referrer"

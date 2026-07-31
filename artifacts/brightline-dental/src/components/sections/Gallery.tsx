@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X, Maximize2, Sparkles, Video, Image as ImageIcon } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder';
+import treatmentVeneersImg from '@/assets/images/treatment_veneers.jpg';
+import treatmentWhiteningImg from '@/assets/images/treatment_whitening.jpg';
 
 export interface GalleryItem {
   id: string | number;
@@ -22,7 +24,7 @@ const galleryData: GalleryItem[] = [
     title: "Cosmetic Veneers Transformation",
     description: "Custom porcelain veneers crafted to complement natural facial symmetry and achieve a radiant, natural smile.",
     tag: "Cosmetic Dentistry",
-    image: "images/treatment_veneers.jpg"
+    image: treatmentVeneersImg
   },
   {
     id: 2,
@@ -31,7 +33,7 @@ const galleryData: GalleryItem[] = [
     title: "Professional Whitening & Alignment",
     description: "In-office laser whitening paired with subtle alignment therapy for bright, evenly spaced teeth.",
     tag: "Whitening & Aligners",
-    image: "images/treatment_whitening.jpg"
+    image: treatmentWhiteningImg
   }
 ];
 
@@ -44,7 +46,7 @@ function GalleryCard({ item, onSelect }: { item: GalleryItem; onSelect: (item: G
       <div className="relative overflow-hidden bg-slate-900 aspect-[16/10]">
         {item.image ? (
           <img
-            src={`${import.meta.env.BASE_URL}${item.image}`}
+            src={item.image}
             alt={item.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             loading="lazy"
@@ -212,7 +214,7 @@ export function Gallery() {
               <div className="p-4 bg-slate-950 relative flex items-center justify-center overflow-hidden max-h-[60vh]">
                 {selectedItem.image ? (
                   <img
-                    src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
+                    src={selectedItem.image}
                     alt={selectedItem.title}
                     className="w-full max-h-[55vh] object-contain rounded-xl shadow-lg"
                     referrerPolicy="no-referrer"

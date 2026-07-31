@@ -1,25 +1,28 @@
 
 import { motion } from 'framer-motion';
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder';
+import drElenaMarshImg from '@/assets/images/dr_elena_marsh.jpg';
+import drAdrianColeImg from '@/assets/images/dr_adrian_cole.jpg';
+import drSophiaHolesonImg from '@/assets/images/dr_sophia_holeson.jpg';
 
 const team = [
   {
     name: "Dr. Elena Marsh, DDS",
     role: "Founder · General & Cosmetic",
     bio: "Dr. Marsh founded Brightline with a vision to blend clinical excellence with genuine patient comfort.",
-    image: "images/dr_elena_marsh.jpg",
+    image: drElenaMarshImg,
   },
   {
     name: "Dr. Adrian Cole, DMD",
     role: "Orthodontics & Invisalign",
     bio: "Dr. Cole has helped hundreds of patients achieve straighter, more confident smiles through cutting-edge aligner technology.",
-    image: "images/dr_adrian_cole.jpg",
+    image: drAdrianColeImg,
   },
   {
     name: "Dr. Sophia Holeson, DDS",
     role: "Pediatric & Family Dentistry",
     bio: "Dr. Holeson specializes in gentle pediatric dentistry, creating a warm, joyful environment where young patients build healthy dental habits for life.",
-    image: "images/dr_sophia_holeson.jpg",
+    image: drSophiaHolesonImg,
   }
 ];
 
@@ -37,7 +40,7 @@ function TeamMemberCard({ member, index }: { member: typeof team[0]; index: numb
           {member.image ? (
             <div className="overflow-hidden rounded-2xl border border-slate-200/80 shadow-sm aspect-[4/5] relative bg-slate-100">
               <img
-                src={`${import.meta.env.BASE_URL}${member.image}`}
+                src={member.image}
                 alt={`${member.name} Portrait`}
                 className="w-full h-full object-cover object-top"
                 referrerPolicy="no-referrer"
