@@ -213,7 +213,6 @@ export default function ConstructionPage() {
                     src={smileLabTechImg}
                     alt="Brightline Dental Studio Smile Lab Technology"
                     className="w-full h-full object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-slate-950/30 pointer-events-none" />
                 </div>

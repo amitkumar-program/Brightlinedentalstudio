@@ -1,9 +1,22 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import heroVideo from '@/assets/video/Video-Hero-Background.mp4';
+import dentalClinicInteriorImg from '@/assets/images/dental_clinic_interior.jpg';
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.log('Autoplay prevented:', err);
+      });
+    }
+  }, []);
+
   const textVariants: Variants = {
     hidden: { opacity: 0, y: 28 },
     visible: (i: number) => ({
@@ -23,16 +36,17 @@ export function Hero() {
       className="relative min-h-[100dvh] flex items-center overflow-hidden bg-[#0D1117]"
     >
       {/* ── Hero Video Background Layer ───────────────────────────────── */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-[#0D1117]">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          poster={dentalClinicInteriorImg}
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-105 transition-opacity duration-1000"
         >
           <source src={heroVideo} type="video/mp4" />
-          <source src={`${import.meta.env.BASE_URL}Video-Hero-Background.mp4`} type="video/mp4" />
           <source src="Video-Hero-Background.mp4" type="video/mp4" />
           Your browser does not support video playback.
         </video>

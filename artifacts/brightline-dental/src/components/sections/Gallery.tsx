@@ -50,7 +50,6 @@ function GalleryCard({ item, onSelect }: { item: GalleryItem; onSelect: (item: G
             alt={item.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             loading="lazy"
-            referrerPolicy="no-referrer"
           />
         ) : (
           <MediaPlaceholder
@@ -217,7 +216,6 @@ export function Gallery() {
                     src={selectedItem.image}
                     alt={selectedItem.title}
                     className="w-full max-h-[55vh] object-contain rounded-xl shadow-lg"
-                    referrerPolicy="no-referrer"
                   />
                 ) : (
                   <MediaPlaceholder

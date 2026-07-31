@@ -74,7 +74,6 @@ export function About() {
                   src={dentalClinicInteriorImg}
                   alt="Brightline Dental Studio Modern Clinic Suite"
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg aspect-[16/9] relative bg-slate-100">
@@ -82,7 +81,6 @@ export function About() {
                   src={smileLabTechImg}
                   alt="Brightline Dental Studio State-of-the-Art Smile Lab"
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
                 />
               </div>
             </div>

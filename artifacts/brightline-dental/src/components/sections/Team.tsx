@@ -43,7 +43,6 @@ function TeamMemberCard({ member, index }: { member: typeof team[0]; index: numb
                 src={member.image}
                 alt={`${member.name} Portrait`}
                 className="w-full h-full object-cover object-top"
-                referrerPolicy="no-referrer"
               />
             </div>
           ) : (
