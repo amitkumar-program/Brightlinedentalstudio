@@ -1,21 +1,49 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
 import { motion, Variants } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Volume2, VolumeX } from 'lucide-react';
 import heroVideo from '@/assets/video/Video-Hero-Background.mp4';
-import dentalClinicInteriorImg from '@/assets/images/dental_clinic_interior.jpg';
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.log('Autoplay prevented:', err);
-      });
+    const video = videoRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', 'true');
+      const attemptPlay = () => {
+        video.play().catch((err) => {
+          console.log('Autoplay attempt handled:', err);
+        });
+      };
+      attemptPlay();
+      // Re-trigger play on user interaction if browser blocked initial autoplay
+      const handleUserInteraction = () => {
+        if (video.paused) {
+          attemptPlay();
+        }
+      };
+      window.addEventListener('touchstart', handleUserInteraction, { once: true });
+      window.addEventListener('click', handleUserInteraction, { once: true });
+
+      return () => {
+        window.removeEventListener('touchstart', handleUserInteraction);
+        window.removeEventListener('click', handleUserInteraction);
+      };
     }
   }, []);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const newMutedState = !videoRef.current.muted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+    }
+  };
 
   const textVariants: Variants = {
     hidden: { opacity: 0, y: 28 },
@@ -39,29 +67,47 @@ export function Hero() {
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-[#0D1117]">
         <video
           ref={videoRef}
+          src={heroVideo}
           autoPlay
           loop
           muted
           playsInline
-          poster={dentalClinicInteriorImg}
-          className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-105 transition-opacity duration-1000"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-90 contrast-105 transition-opacity duration-1000"
         >
           <source src={heroVideo} type="video/mp4" />
-          <source src="Video-Hero-Background.mp4" type="video/mp4" />
           Your browser does not support video playback.
         </video>
       </div>
 
-      {/* ── Dark Legibility Overlays ─────────────────────────────────────── */}
-      {/* Primary dark gradient backdrop for crisp text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/35 pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-transparent to-black/40 pointer-events-none z-0" />
+      {/* ── Light Subtle Dark Overlays for Text Legibility (Without Obscuring Video) ── */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117]/80 via-transparent to-black/30 pointer-events-none z-0" />
 
-      {/* Bottom fade for seamless page transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+      {/* Bottom fade for smooth section transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none z-10" />
 
       {/* Subtle brand blue glow accent */}
-      <div className="absolute bottom-10 left-0 w-[500px] h-[300px] bg-primary/20 blur-[140px] rounded-full pointer-events-none z-0" />
+      <div className="absolute bottom-10 left-0 w-[500px] h-[300px] bg-primary/15 blur-[140px] rounded-full pointer-events-none z-0" />
+
+      {/* Audio toggle control */}
+      <button
+        onClick={toggleMute}
+        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+        className="absolute bottom-8 right-8 z-30 p-3 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white transition-all hover:scale-110 active:scale-95 shadow-xl flex items-center gap-2 text-xs font-medium"
+      >
+        {isMuted ? (
+          <>
+            <VolumeX className="w-4 h-4 text-white/80" />
+            <span className="hidden sm:inline">Unmute Video</span>
+          </>
+        ) : (
+          <>
+            <Volume2 className="w-4 h-4 text-primary animate-pulse" />
+            <span className="hidden sm:inline">Mute Sound</span>
+          </>
+        )}
+      </button>
 
       {/* Video playback control badges in top right */}
 
