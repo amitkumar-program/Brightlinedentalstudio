@@ -1,8 +1,8 @@
 
 import { motion } from 'framer-motion';
 import { MapPin, Clock } from 'lucide-react';
-import dentalClinicInteriorImg from '@/assets/images/dental_clinic_interior.jpg';
-import smileLabTechImg from '@/assets/images/smile_lab_technology.jpg';
+const dentalClinicInteriorImg = '/images/dental_clinic_interior.jpg';
+const smileLabTechImg = '/images/smile_lab_technology.jpg';
 
 export function About() {
   return (

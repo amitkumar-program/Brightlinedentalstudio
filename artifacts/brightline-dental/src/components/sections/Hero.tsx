@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import { ArrowDown, Volume2, VolumeX } from 'lucide-react';
-import heroVideo from '@/assets/video/Video-Hero-Background.mp4';
+const heroVideoWebm = '/Video-Hero-Background.webm';
+const heroVideoMp4 = '/Video-Hero-Background.mp4';
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -67,7 +68,6 @@ export function Hero() {
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-[#0D1117]">
         <video
           ref={videoRef}
-          src={heroVideo}
           autoPlay
           loop
           muted
@@ -75,7 +75,8 @@ export function Hero() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-90 contrast-105 transition-opacity duration-1000"
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source src={heroVideoWebm} type="video/webm" />
+          <source src={heroVideoMp4} type="video/mp4" />
           Your browser does not support video playback.
         </video>
       </div>

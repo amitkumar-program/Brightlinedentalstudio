@@ -1,9 +1,9 @@
 
 import { motion } from 'framer-motion';
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder';
-import drElenaMarshImg from '@/assets/images/dr_elena_marsh.jpg';
-import drAdrianColeImg from '@/assets/images/dr_adrian_cole.jpg';
-import drSophiaHolesonImg from '@/assets/images/dr_sophia_holeson.jpg';
+const drElenaMarshImg = '/images/dr_elena_marsh.jpg';
+const drAdrianColeImg = '/images/dr_adrian_cole.jpg';
+const drSophiaHolesonImg = '/images/dr_sophia_holeson.jpg';
 
 const team = [
   {

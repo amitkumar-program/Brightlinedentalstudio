@@ -18,7 +18,7 @@ import {
 
 import { PageLayout } from '../components/PageLayout';
 import { PageHero } from '../components/PageHero';
-import smileLabTechImg from '@/assets/images/smile_lab_technology.jpg';
+const smileLabTechImg = '/images/smile_lab_technology.jpg';
 
 interface Station {
   id: string;

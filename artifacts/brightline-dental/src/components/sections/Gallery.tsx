@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X, Maximize2, Sparkles, Video, Image as ImageIcon } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder';
-import treatmentVeneersImg from '@/assets/images/treatment_veneers.jpg';
-import treatmentWhiteningImg from '@/assets/images/treatment_whitening.jpg';
+const treatmentVeneersImg = '/images/treatment_veneers.jpg';
+const treatmentWhiteningImg = '/images/treatment_whitening.jpg';
 
 export interface GalleryItem {
   id: string | number;
