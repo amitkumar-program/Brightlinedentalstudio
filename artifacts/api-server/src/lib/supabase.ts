@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import WebSocket from 'ws';
 
 const supabaseUrl = process.env.SUPABASE_URL?.trim();
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim() || process.env.SUPABASE_ANON_KEY?.trim();
@@ -9,10 +10,16 @@ try {
   if (!supabaseServiceKey) throw new Error('SUPABASE_SERVICE_ROLE_KEY and SUPABASE_ANON_KEY are missing.');
   if (!/^https?:\/\//i.test(supabaseUrl)) throw new Error('Invalid URL');
   
+  // Pass ws as the realtime transport so Supabase doesn't call getWebSocketConstructor()
+  // which throws on Node.js < 22 (no native WebSocket). This also prevents esbuild from
+  // tree-shaking the WebSocket import since it is used as a concrete value here.
   supabaseClient = createClient(supabaseUrl, supabaseServiceKey, {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
+    },
+    realtime: {
+      transport: WebSocket,
     },
   });
 } catch (e) {
@@ -152,21 +159,6 @@ try {
         filtered = filtered.filter(item => {
           return this.conditions.every(cond => String(item[cond.field]) === String(cond.value));
         });
-      }
-
-      if (this.table === 'profiles' && filtered.length === 0 && this.conditions.some(c => c.field === 'id')) {
-        const idCond = this.conditions.find(c => c.field === 'id');
-        if (idCond) {
-          const val = idCond.value;
-          const isAdmin = typeof val === 'string' && val.includes('admin:true');
-          const newProfile = {
-            id: val,
-            is_admin: isAdmin,
-            created_at: new Date().toISOString()
-          };
-          list.push(newProfile);
-          filtered = [newProfile];
-        }
       }
 
       if (this.orderField) {
